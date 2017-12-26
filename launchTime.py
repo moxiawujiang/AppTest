@@ -1,5 +1,4 @@
 #usr/bin/python
-#encoding:utf-8
 import csv
 import os
 import time
@@ -14,7 +13,7 @@ class App(object):
 
     #启动app
     def launchapp(self):
-        cmd="adb shell am start -W -n com.buestc.wallet/.ui.MainActivity bnds=[282,672][540,960]"  #喜付的首页启动
+        cmd="adb shell am start -W -n com.buestc.wallet/.ui.MainActivity "  #喜付的首页启动
         self.content=os.popen(cmd)
 
     #停止app
