@@ -2,7 +2,6 @@
 __author__ = '芜疆'
 import time
 from  appium import webdriver
-import os
 
 
 
@@ -16,20 +15,21 @@ desired_caps['unicodeKeyboard']='True'
 desired_caps['resetKeyboard']='True'  #这两个keyboard设置是为了输入中文
 
 driver=webdriver.Remote("http://127.0.0.1:4723/wd/hub",desired_caps)
-driver.implicitly_wait(5)
+driver.implicitly_wait(3)
 driver.find_element_by_id("btn_login").click()
 
 #登录失败
 driver.find_element_by_id('et_username').send_keys('13709048313')
 driver.find_element_by_id("et_new_stuempno").send_keys('1234567')
+driver.find_element_by_id("btn_login_ok").click()
 try:
     if driver.switch_to.alert().text=="账号或密码错误":
         print('密码错误登录失败pass')
 except Exception as e:
     print(e)
 
-
 #成功登录
+driver.find_element_by_id('et_username').clear()
 driver.find_element_by_id('et_username').send_keys('13709048313')
 driver.find_element_by_id("et_new_stuempno").send_keys('123456')
 driver.find_element_by_id("btn_login_ok").click()
@@ -40,17 +40,10 @@ if name=='张孝雪':
     print("登录成功pass")
 else:
     print("登录成功fail")
-
-
 driver.find_element_by_id('home_page_avater_imageview').click()
 driver.find_element_by_id('ica_setting_ib').click()
 driver.find_element_by_id('btn_logout').click()
 driver.find_element_by_id('button1').click()
 driver.quit()
 
-
-
-time.sleep(5)
-
-
-
+time.sleep(2)
